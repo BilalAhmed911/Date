@@ -1477,3 +1477,69 @@ body {
     margin-top:40px;
 
 }
+
+/* =====================================================
+   CHAPTER 7
+===================================================== */
+
+#scene-chapter7{
+
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    min-height:100vh;
+
+    background:
+    radial-gradient(circle,#2b0b1c,#070707);
+
+}
+
+.confirm-card{
+
+    width:min(650px,90%);
+
+    padding:45px;
+
+    border-radius:25px;
+
+    text-align:center;
+
+    background:rgba(255,255,255,.08);
+
+    backdrop-filter:blur(20px);
+
+}
+
+.confirm-card h1{
+
+    color:white;
+
+    margin-bottom:20px;
+
+}
+
+.confirm-text{
+
+    color:#ffbfd7;
+
+    margin-bottom:35px;
+
+}
+
+.summary-box{
+
+    margin:30px 0;
+
+    text-align:left;
+
+}
+
+.summary-box p{
+
+    color:white;
+
+    margin:18px 0;
+
+    font-size:22px;
+
+}

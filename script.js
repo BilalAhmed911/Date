@@ -30,6 +30,7 @@
   var sceneChapter4 = document.getElementById("scene-chapter4");
   var sceneChapter5 = document.getElementById("scene-chapter5");
   var sceneChapter6 = document.getElementById("scene-chapter6");
+  var sceneChapter7 = document.getElementById("scene-chapter7");
   var beginBtn = document.getElementById('beginBtn');
   var openQuestionBtn = document.getElementById('openQuestionBtn');
   var petalsContainer = document.getElementById('petals');
@@ -626,7 +627,36 @@ if (timeContinue) {
 
     timeContinue.addEventListener("click", function () {
 
-        alert("Chapter 7 Coming Next ❤️");
+        document.getElementById("summaryRestaurant").textContent =
+selectedRestaurant;
+
+document.getElementById("summaryDay").textContent =
+selectedDay;
+
+document.getElementById("summaryTime").textContent =
+selectedTime;
+
+transitionScene(
+    sceneChapter6,
+    sceneChapter7
+);
+
+    });
+
+}
+
+/* =====================================================
+   CHAPTER 7
+===================================================== */
+
+var finalContinue =
+document.getElementById("finalContinue");
+
+if(finalContinue){
+
+    finalContinue.addEventListener("click",function(){
+
+        alert("❤️ Chapter 8 Coming Next ❤️");
 
     });
 
