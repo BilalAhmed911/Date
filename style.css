@@ -1543,3 +1543,64 @@ body {
     font-size:22px;
 
 }
+
+/* =====================================================
+   CHAPTER 8
+===================================================== */
+
+#scene-chapter8{
+
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    min-height:100vh;
+
+    background:
+    radial-gradient(circle,#1d0815,#040404);
+
+}
+
+.letter-wrapper{
+
+    width:min(800px,92%);
+
+}
+
+.letter-card{
+
+    padding:50px;
+
+    border-radius:28px;
+
+    background:#fffaf3;
+
+    color:#333;
+
+    box-shadow:
+    0 25px 60px rgba(0,0,0,.45);
+
+}
+
+.letter-card h1{
+
+    text-align:center;
+
+    margin-bottom:35px;
+
+}
+
+.love-letter{
+
+    font-size:21px;
+
+    line-height:2;
+
+}
+
+.love-letter h2{
+
+    margin-top:40px;
+
+    text-align:right;
+
+}

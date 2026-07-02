@@ -31,6 +31,7 @@
   var sceneChapter5 = document.getElementById("scene-chapter5");
   var sceneChapter6 = document.getElementById("scene-chapter6");
   var sceneChapter7 = document.getElementById("scene-chapter7");
+  var sceneChapter8 = document.getElementById("scene-chapter8");
   var beginBtn = document.getElementById('beginBtn');
   var openQuestionBtn = document.getElementById('openQuestionBtn');
   var petalsContainer = document.getElementById('petals');
@@ -656,7 +657,27 @@ if(finalContinue){
 
     finalContinue.addEventListener("click",function(){
 
-        alert("❤️ Chapter 8 Coming Next ❤️");
+        transitionScene(
+    sceneChapter7,
+    sceneChapter8
+);
+
+    });
+
+}
+
+/* =====================================================
+   CHAPTER 8
+===================================================== */
+
+var restartStory =
+document.getElementById("restartStory");
+
+if(restartStory){
+
+    restartStory.addEventListener("click",function(){
+
+        window.location.reload();
 
     });
 
