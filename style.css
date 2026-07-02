@@ -1191,3 +1191,119 @@ body {
     position:relative;
 
 }
+
+/* =====================================================
+   CHAPTER 4 - RESTAURANT
+===================================================== */
+
+#scene-chapter4{
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    min-height:100vh;
+    background:
+    radial-gradient(circle at top,#2b0b1c,#090909 60%);
+}
+
+.restaurant-container{
+
+    width:min(900px,92%);
+
+    text-align:center;
+
+}
+
+.restaurant-container h1{
+
+    font-size:52px;
+
+    color:white;
+
+    margin-bottom:10px;
+
+}
+
+.restaurant-subtitle{
+
+    color:#ffb9d2;
+
+    margin-bottom:10px;
+
+}
+
+.restaurant-container h2{
+
+    color:white;
+
+    margin-bottom:45px;
+
+}
+
+.restaurant-grid{
+
+    display:grid;
+
+    grid-template-columns:
+    repeat(auto-fit,minmax(220px,1fr));
+
+    gap:22px;
+
+}
+
+.restaurant-card{
+
+    padding:28px;
+
+    cursor:pointer;
+
+    border-radius:22px;
+
+    background:rgba(255,255,255,.08);
+
+    backdrop-filter:blur(18px);
+
+    border:1px solid rgba(255,255,255,.12);
+
+    transition:.35s;
+
+}
+
+.restaurant-card span{
+
+    font-size:48px;
+
+}
+
+.restaurant-card h3{
+
+    margin-top:18px;
+
+    color:white;
+
+}
+
+.restaurant-card:hover{
+
+    transform:translateY(-8px);
+
+    box-shadow:
+
+    0 20px 50px rgba(255,92,168,.35);
+
+}
+
+.restaurant-card.selected{
+
+    border:2px solid hotpink;
+
+    box-shadow:
+
+    0 0 35px hotpink;
+
+}
+
+#restaurantContinue{
+
+    margin-top:40px;
+
+}

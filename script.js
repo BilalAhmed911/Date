@@ -27,6 +27,7 @@
   var sceneIntro = document.getElementById('scene-intro');
   var sceneChapter2 = document.getElementById('scene-chapter2');
   var sceneChapter3 = document.getElementById('scene-chapter3');
+  var sceneChapter4 = document.getElementById("scene-chapter4");
   var beginBtn = document.getElementById('beginBtn');
   var openQuestionBtn = document.getElementById('openQuestionBtn');
   var petalsContainer = document.getElementById('petals');
@@ -463,9 +464,62 @@ if(yesButton){
 
     yesButton.addEventListener("click",function(){
 
-        alert("❤️ Yayyyyy!! She said YES ❤️");
+        transitionScene(
+    sceneChapter3,
+    sceneChapter4
+);
 
         // Chapter 4 starts here
+
+    });
+
+}
+/* =====================================================
+   CHAPTER 4
+===================================================== */
+
+var restaurantCards =
+document.querySelectorAll(".restaurant-card");
+
+var restaurantContinue =
+document.getElementById("restaurantContinue");
+
+var selectedRestaurant = "";
+
+if (restaurantCards.length) {
+
+    restaurantCards.forEach(function(card){
+
+        card.addEventListener("click", function(){
+
+            restaurantCards.forEach(function(c){
+
+                c.classList.remove("selected");
+
+            });
+
+            card.classList.add("selected");
+
+            selectedRestaurant = card.dataset.value;
+
+            if (restaurantContinue) {
+                restaurantContinue.style.display = "inline-block";
+            }
+
+        });
+
+    });
+
+}
+
+if (restaurantContinue) {
+
+    restaurantContinue.addEventListener("click", function () {
+
+        alert(
+            "Restaurant Selected: " +
+            selectedRestaurant
+        );
 
     });
 
