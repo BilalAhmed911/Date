@@ -1211,7 +1211,7 @@ body {
     width:100%;
     min-height:100vh;
 
-    padding:30px 20px 80px;
+    padding:20px;
 
     display:flex;
     flex-direction:column;
@@ -1240,26 +1240,25 @@ body {
 .restaurant-grid{
 
     width:100%;
-    max-width:900px;
+    max-width:500px;
 
     display:grid;
 
-    grid-template-columns:
-    repeat(auto-fit,minmax(220px,1fr));
+    grid-template-columns:1fr 1fr;
 
-    gap:22px;
-
-    margin-bottom:30px;
+    gap:14px;
 
 }
 
 .restaurant-card{
 
-    padding:18px;
+    padding:14px;
+
+    min-height:120px;
+
+    border-radius:16px;
 
     cursor:pointer;
-
-    border-radius:22px;
 
     background:rgba(255,255,255,.08);
 
@@ -1267,19 +1266,21 @@ body {
 
     border:1px solid rgba(255,255,255,.12);
 
-    transition:.35s;
+    transition:.3s;
 
 }
 
 .restaurant-card span{
 
-    font-size:36px;
+    font-size:30px;
 
 }
 
 .restaurant-card h3{
 
-    margin-top:18px;
+    margin-top:10px;
+
+    font-size:18px;
 
     color:white;
 
