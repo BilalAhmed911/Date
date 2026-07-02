@@ -497,23 +497,29 @@ if (restaurantCards.length) {
 
     restaurantCards.forEach(function(card){
 
-        card.addEventListener("pointerup", function () {
+        function selectRestaurant(card){
 
-            restaurantCards.forEach(function(c){
+    restaurantCards.forEach(function(c){
+        c.classList.remove("selected");
+    });
 
-                c.classList.remove("selected");
+    card.classList.add("selected");
 
-            });
+    selectedRestaurant = card.dataset.value;
 
-            card.classList.add("selected");
+    if(restaurantContinue){
+        restaurantContinue.style.display = "inline-block";
+    }
+}
 
-            selectedRestaurant = card.dataset.value;
+card.addEventListener("click", function(){
+    selectRestaurant(card);
+});
 
-            if (restaurantContinue) {
-                restaurantContinue.style.display = "inline-block";
-            }
-
-        });
+card.addEventListener("touchstart", function(e){
+    e.preventDefault();
+    selectRestaurant(card);
+});
 
     });
 
