@@ -1564,47 +1564,34 @@ body {
 
 }
 
-.letter-wrapper{
+@media (max-width:480px){
 
-    width:min(800px,92%);
+    .letter-card{
 
-}
+        padding:20px;
 
-.letter-card{
+    }
 
-    padding:50px;
+    .letter-card h1{
 
-    border-radius:28px;
+        font-size:24px;
 
-    background:#fffaf3;
+    }
 
-    color:#333;
+    .love-letter{
 
-    box-shadow:
-    0 25px 60px rgba(0,0,0,.45);
+        font-size:15px;
 
-}
+        line-height:1.5;
 
-.letter-card h1{
+    }
 
-    text-align:center;
+    .love-letter h2{
 
-    margin-bottom:35px;
+        font-size:18px;
 
-}
+        margin-top:18px;
 
-.love-letter{
-
-    font-size:21px;
-
-    line-height:2;
-
-}
-
-.love-letter h2{
-
-    margin-top:40px;
-
-    text-align:right;
+    }
 
 }
