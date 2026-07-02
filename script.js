@@ -1,6 +1,6 @@
 /**
  * Our Date — Story Engine
- * Chapter 1: Cinematic Introduction
+ * Chapters 1–3 orchestration
  */
 
 (function () {
@@ -9,27 +9,42 @@
   /* --------------------------------------------------------------------------
      Config
      -------------------------------------------------------------------------- */
-  const INTRO_STEP_DELAY = 1000;
-  const SCENE_FADE_DURATION = 1200;
+  var INTRO_STEP_DELAY = 1000;
+  var SCENE_FADE_DURATION = 1200;
 
-  const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var CHAT_MESSAGES = [
+    { text: 'Hey Jaan ❤️', delayAfter: 1500 },
+    { text: "I've been thinking about us...", delayAfter: 2000 },
+    { text: 'And I have a little surprise for you.', delayAfter: 2000 },
+    { text: 'So I wanted to ask you something...', delayAfter: 2000 },
+  ];
+
+  var prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
   /* --------------------------------------------------------------------------
      DOM References
      -------------------------------------------------------------------------- */
-  const sceneIntro = document.getElementById('scene-intro');
-  const sceneChapter2 = document.getElementById('scene-chapter2');
-  const beginBtn = document.getElementById('beginBtn');
-  const petalsContainer = document.getElementById('petals');
-  const particlesContainer = document.getElementById('particles');
-  const parallaxLayers = document.querySelectorAll('.parallax-bg__layer');
+  var sceneIntro = document.getElementById('scene-intro');
+  var sceneChapter2 = document.getElementById('scene-chapter2');
+  var sceneChapter3 = document.getElementById('scene-chapter3');
+  var beginBtn = document.getElementById('beginBtn');
+  var openQuestionBtn = document.getElementById('openQuestionBtn');
+  var petalsContainer = document.getElementById('petals');
+  var particlesContainer = document.getElementById('particles');
+  var parallaxLayers = document.querySelectorAll('.parallax-bg__layer');
+  var chatMessages = document.getElementById('chatMessages');
+  var chatTyping = document.getElementById('chatTyping');
+  var chatStatus = document.getElementById('chatStatus');
+  var chatFooter = document.getElementById('chatFooter');
 
-  const introSteps = {
+  var introSteps = {
     heading: document.querySelector('[data-step="heading"]'),
     subheading: document.querySelector('[data-step="subheading"]'),
     title: document.querySelector('[data-step="title"]'),
     button: document.querySelector('[data-step="button"]'),
   };
+
+  var chapter2Started = false;
 
   /* --------------------------------------------------------------------------
      Utilities
@@ -46,6 +61,56 @@
     if (extraClass) {
       element.classList.add(extraClass);
     }
+  }
+
+  function getTypingDuration(text) {
+    if (prefersReducedMotion) return 200;
+    var base = 700;
+    var perChar = 35;
+    return Math.min(base + text.length * perChar, 1800);
+  }
+
+  function formatTime(date) {
+    var hours = date.getHours();
+    var minutes = date.getMinutes();
+    var ampm = hours >= 12 ? 'PM' : 'AM';
+    hours = hours % 12 || 12;
+    var mins = minutes < 10 ? '0' + minutes : minutes;
+    return hours + ':' + mins + ' ' + ampm;
+  }
+
+  function scrollChatToBottom() {
+    var chatBody = document.querySelector('.chat-body');
+    if (chatBody) {
+      chatBody.scrollTop = chatBody.scrollHeight;
+    }
+  }
+
+  /* --------------------------------------------------------------------------
+     Scene Transitions
+     -------------------------------------------------------------------------- */
+  function transitionScene(fromScene, toScene, onEnter) {
+    if (!fromScene || !toScene) return;
+
+    fromScene.classList.add('scene--exit');
+
+    setTimeout(function () {
+      fromScene.classList.remove('scene--active', 'scene--exit');
+      fromScene.classList.add('scene--hidden');
+      fromScene.setAttribute('aria-hidden', 'true');
+
+      toScene.classList.remove('scene--hidden');
+      toScene.classList.add('scene--active', 'scene--enter');
+      toScene.removeAttribute('aria-hidden');
+
+      if (typeof onEnter === 'function') {
+        onEnter();
+      }
+
+      setTimeout(function () {
+        toScene.classList.remove('scene--enter');
+      }, SCENE_FADE_DURATION);
+    }, SCENE_FADE_DURATION);
   }
 
   /* --------------------------------------------------------------------------
@@ -138,7 +203,7 @@
   }
 
   /* --------------------------------------------------------------------------
-     Intro Sequence
+     Chapter 1 — Intro Sequence
      -------------------------------------------------------------------------- */
   async function runIntroSequence() {
     if (prefersReducedMotion) {
@@ -162,28 +227,127 @@
     revealStep(introSteps.button, 'intro-step--glow');
   }
 
-  /* --------------------------------------------------------------------------
-     Scene Transition
-     -------------------------------------------------------------------------- */
   function transitionToChapter2() {
     if (!sceneIntro || !sceneChapter2) return;
 
     beginBtn.disabled = true;
-    sceneIntro.classList.add('scene--exit');
+
+    transitionScene(sceneIntro, sceneChapter2, function () {
+      startChapter2();
+    });
+  }
+
+  /* --------------------------------------------------------------------------
+     Chapter 2 — WhatsApp Conversation
+     -------------------------------------------------------------------------- */
+  function showTyping() {
+    if (!chatTyping || !chatStatus) return;
+
+    chatTyping.classList.remove('chat-typing--hidden');
+    chatTyping.setAttribute('aria-hidden', 'false');
+
+    requestAnimationFrame(function () {
+      chatTyping.classList.add('chat-typing--visible');
+    });
+
+    chatStatus.textContent = 'typing...';
+    chatStatus.classList.add('chat-header__status--typing');
+    scrollChatToBottom();
+  }
+
+  function hideTyping() {
+    if (!chatTyping || !chatStatus) return;
+
+    chatTyping.classList.remove('chat-typing--visible');
+    chatStatus.textContent = 'online';
+    chatStatus.classList.remove('chat-header__status--typing');
 
     setTimeout(function () {
-      sceneIntro.classList.remove('scene--active');
-      sceneIntro.classList.add('scene--hidden');
-      sceneIntro.setAttribute('aria-hidden', 'true');
+      chatTyping.classList.add('chat-typing--hidden');
+      chatTyping.setAttribute('aria-hidden', 'true');
+    }, 350);
+  }
 
-      sceneChapter2.classList.remove('scene--hidden');
-      sceneChapter2.classList.add('scene--active', 'scene--enter');
-      sceneChapter2.removeAttribute('aria-hidden');
+  function appendMessage(text, showSender) {
+    if (!chatMessages) return;
 
-      setTimeout(function () {
-        sceneChapter2.classList.remove('scene--enter');
-      }, SCENE_FADE_DURATION);
-    }, SCENE_FADE_DURATION);
+    var message = document.createElement('div');
+    message.className = 'chat-message';
+
+    if (showSender) {
+      var sender = document.createElement('span');
+      sender.className = 'chat-message__sender';
+      sender.textContent = 'Bilal';
+      message.appendChild(sender);
+    }
+
+    var bubble = document.createElement('div');
+    bubble.className = 'chat-message__bubble';
+
+    var messageText = document.createElement('p');
+    messageText.className = 'chat-message__text';
+    messageText.textContent = text;
+
+    var time = document.createElement('span');
+    time.className = 'chat-message__time';
+    time.textContent = formatTime(new Date());
+
+    bubble.appendChild(messageText);
+    bubble.appendChild(time);
+    message.appendChild(bubble);
+    chatMessages.appendChild(message);
+
+    scrollChatToBottom();
+  }
+
+  function showQuestionButton() {
+    if (!chatFooter) return;
+
+    chatFooter.classList.remove('chat-footer--hidden');
+
+    requestAnimationFrame(function () {
+      chatFooter.classList.add('chat-footer--visible');
+    });
+
+    scrollChatToBottom();
+  }
+
+  async function runChatSequence() {
+    var isFirst = true;
+
+    for (var i = 0; i < CHAT_MESSAGES.length; i++) {
+      var entry = CHAT_MESSAGES[i];
+      var delayAfter = prefersReducedMotion ? 400 : entry.delayAfter;
+
+      showTyping();
+      await wait(getTypingDuration(entry.text));
+      hideTyping();
+      await wait(prefersReducedMotion ? 0 : 300);
+
+      appendMessage(entry.text, isFirst);
+      isFirst = false;
+
+      await wait(delayAfter);
+    }
+
+    showQuestionButton();
+  }
+
+  function startChapter2() {
+    if (chapter2Started) return;
+    chapter2Started = true;
+
+    wait(prefersReducedMotion ? 100 : 600).then(function () {
+      runChatSequence();
+    });
+  }
+
+  function transitionToChapter3() {
+    if (!sceneChapter2 || !sceneChapter3) return;
+
+    openQuestionBtn.disabled = true;
+
+    transitionScene(sceneChapter2, sceneChapter3);
   }
 
   /* --------------------------------------------------------------------------
@@ -197,6 +361,10 @@
 
     if (beginBtn) {
       beginBtn.addEventListener('click', transitionToChapter2);
+    }
+
+    if (openQuestionBtn) {
+      openQuestionBtn.addEventListener('click', transitionToChapter3);
     }
   }
 
