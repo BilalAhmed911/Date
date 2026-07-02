@@ -1307,3 +1307,88 @@ body {
     margin-top:40px;
 
 }
+
+/* =====================================================
+   CHAPTER 5 - DAY
+===================================================== */
+
+#scene-chapter5{
+
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    min-height:100vh;
+
+    background:
+    radial-gradient(circle,#1b0a18,#070707);
+
+}
+
+.day-container{
+
+    width:min(650px,92%);
+    text-align:center;
+
+}
+
+.day-container h1{
+
+    color:white;
+    margin-bottom:10px;
+
+}
+
+.day-container p{
+
+    color:#ffbfd7;
+    margin-bottom:40px;
+
+}
+
+.day-grid{
+
+    display:grid;
+    gap:20px;
+
+}
+
+.day-card{
+
+    padding:28px;
+
+    border-radius:20px;
+
+    cursor:pointer;
+
+    background:rgba(255,255,255,.08);
+
+    border:1px solid rgba(255,255,255,.12);
+
+    transition:.3s;
+
+    color:white;
+
+    font-size:24px;
+
+}
+
+.day-card:hover{
+
+    transform:translateY(-6px);
+
+}
+
+.day-card.selected{
+
+    border:2px solid hotpink;
+
+    box-shadow:
+    0 0 30px hotpink;
+
+}
+
+#dayContinue{
+
+    margin-top:40px;
+
+}

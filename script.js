@@ -28,6 +28,7 @@
   var sceneChapter2 = document.getElementById('scene-chapter2');
   var sceneChapter3 = document.getElementById('scene-chapter3');
   var sceneChapter4 = document.getElementById("scene-chapter4");
+  var sceneChapter5 = document.getElementById("scene-chapter5");
   var beginBtn = document.getElementById('beginBtn');
   var openQuestionBtn = document.getElementById('openQuestionBtn');
   var petalsContainer = document.getElementById('petals');
@@ -516,10 +517,61 @@ if (restaurantContinue) {
 
     restaurantContinue.addEventListener("click", function () {
 
-        alert(
-            "Restaurant Selected: " +
-            selectedRestaurant
-        );
+        transitionScene(
+    sceneChapter4,
+    sceneChapter5
+);
+
+    });
+
+}
+
+/* =====================================================
+   CHAPTER 5
+===================================================== */
+
+var dayCards =
+document.querySelectorAll(".day-card");
+
+var dayContinue =
+document.getElementById("dayContinue");
+
+var selectedDay = "";
+
+if(dayCards.length){
+
+    dayCards.forEach(function(card){
+
+        card.addEventListener("click",function(){
+
+            dayCards.forEach(function(c){
+
+                c.classList.remove("selected");
+
+            });
+
+            card.classList.add("selected");
+
+            selectedDay =
+            card.dataset.day;
+
+            if(dayContinue){
+
+                dayContinue.style.display="inline-block";
+
+            }
+
+        });
+
+    });
+
+}
+
+if(dayContinue){
+
+    dayContinue.addEventListener("click",function(){
+
+        alert("Day Selected: "+selectedDay);
 
     });
 
