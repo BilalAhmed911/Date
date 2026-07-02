@@ -12,8 +12,8 @@
   var INTRO_STEP_DELAY = 1000;
   var SCENE_FADE_DURATION = 1200;
 
-  var GOOGLE_SCRIPT_URL =
-"https://script.google.com/macros/s/AKfycbyFNn-GYmsawfvX0GKkAQJtvj9UAd2mVfeyI5pN-QvsFrz16jFeg4TfwlMNeHt8-4Cx/exec";
+ const GOOGLE_SCRIPT_URL =
+"https://script.google.com/macros/s/AKfycbxBIlvR-OlBw8cbIHz-4VitgzFra287wp8Bf3gsRFCRsu-aX7723yytPNPdQsESwKAp/exec";
 
   var CHAT_MESSAGES = [
     { text: 'Hey Jaan ❤️', delayAfter: 1500 },
