@@ -347,7 +347,11 @@
 
     openQuestionBtn.disabled = true;
 
-    transitionScene(sceneChapter2, sceneChapter3);
+    transitionScene(sceneChapter2, sceneChapter3,function(){
+
+    typeProposalText();
+
+});
   }
 
   /* --------------------------------------------------------------------------
@@ -373,4 +377,98 @@
   } else {
     init();
   }
+/* =====================================================
+   CHAPTER 3
+===================================================== */
+
+var yesButton = document.getElementById("yesButton");
+var noButton = document.getElementById("noButton");
+var funnyMessage = document.getElementById("funnyMessage");
+var proposalTyping = document.getElementById("proposalTyping");
+
+var noCount = 0;
+
+var funnyTexts = [
+    "Nice try 😜",
+    "Nope 😂",
+    "Still no 😆",
+    "You know the answer ❤️",
+    "Just press YES 😁"
+];
+
+function typeProposalText() {
+
+    if (!proposalTyping) return;
+
+    var text = "I have something to ask you...";
+    proposalTyping.textContent = "";
+
+    var i = 0;
+
+    var timer = setInterval(function(){
+
+        proposalTyping.textContent += text[i];
+
+        i++;
+
+        if(i >= text.length){
+
+            clearInterval(timer);
+
+        }
+
+    },55);
+
+}
+
+function moveNoButton(){
+
+    if(!noButton) return;
+
+    noCount++;
+
+    var x = Math.random()*220-110;
+    var y = Math.random()*180-90;
+
+    noButton.style.transform =
+        "translate("+x+"px,"+y+"px)";
+
+    funnyMessage.textContent =
+        funnyTexts[(noCount-1)%funnyTexts.length];
+
+    if(noCount>=5){
+
+        noButton.style.transform +=
+            " scale(.7)";
+
+    }
+
+    if(noCount>=10){
+
+        noButton.style.display="none";
+
+    }
+
+}
+
+if(noButton){
+
+    noButton.addEventListener("mouseenter",moveNoButton);
+
+    noButton.addEventListener("click",moveNoButton);
+
+}
+
+if(yesButton){
+
+    yesButton.addEventListener("click",function(){
+
+        alert("❤️ Yayyyyy!! She said YES ❤️");
+
+        // Chapter 4 starts here
+
+    });
+
+}
+
 })();

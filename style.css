@@ -1009,3 +1009,185 @@ body {
     opacity: 1;
   }
 }
+
+/* ==========================================
+   CHAPTER 3 - PROPOSAL
+========================================== */
+
+#scene-chapter3{
+    position:relative;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    min-height:100vh;
+    overflow:hidden;
+    background:
+        radial-gradient(circle at top,#2b0b1c,#140610 55%,#050507);
+}
+
+.proposal-overlay{
+    position:absolute;
+    inset:0;
+    background:
+        radial-gradient(circle,#ff5ca844 0%,transparent 65%);
+    filter:blur(80px);
+    animation:pulseGlow 6s infinite ease-in-out;
+}
+
+@keyframes pulseGlow{
+    0%,100%{
+        transform:scale(1);
+        opacity:.4;
+    }
+    50%{
+        transform:scale(1.3);
+        opacity:.9;
+    }
+}
+
+.proposal-card{
+    position:relative;
+    z-index:5;
+    width:min(520px,90%);
+    padding:40px;
+    text-align:center;
+
+    background:rgba(255,255,255,.08);
+
+    border:1px solid rgba(255,255,255,.15);
+
+    backdrop-filter:blur(25px);
+
+    border-radius:28px;
+
+    box-shadow:
+        0 25px 60px rgba(0,0,0,.5);
+}
+
+.proposal-photo{
+    width:180px;
+    height:180px;
+
+    margin:auto;
+
+    border-radius:50%;
+    overflow:hidden;
+
+    border:5px solid #ff8cb8;
+
+    box-shadow:
+        0 0 40px rgba(255,120,170,.55);
+
+    animation:photoFloat 5s ease-in-out infinite;
+}
+
+.proposal-photo img{
+    width:100%;
+    height:100%;
+    object-fit:cover;
+}
+
+@keyframes photoFloat{
+
+    0%,100%{
+        transform:translateY(0px);
+    }
+
+    50%{
+        transform:translateY(-12px);
+    }
+
+}
+
+.proposal-small{
+
+    margin-top:25px;
+
+    color:#ffb9d2;
+
+    font-size:20px;
+
+}
+
+#proposalTyping{
+
+    margin-top:15px;
+
+    color:white;
+
+    min-height:45px;
+
+}
+
+.proposal-question{
+
+    margin-top:30px;
+
+    font-size:42px;
+
+    line-height:1.3;
+
+    color:white;
+
+    text-shadow:
+        0 0 25px hotpink;
+
+}
+
+.proposal-buttons{
+
+    display:flex;
+
+    justify-content:center;
+
+    gap:20px;
+
+    margin-top:40px;
+
+    flex-wrap:wrap;
+
+}
+
+.primary-button,
+.secondary-button{
+
+    border:none;
+
+    cursor:pointer;
+
+    padding:16px 36px;
+
+    border-radius:50px;
+
+    font-size:18px;
+
+    transition:.35s;
+
+}
+
+.primary-button{
+
+    background:#ff5ca8;
+
+    color:white;
+
+    box-shadow:
+        0 0 25px rgba(255,92,168,.5);
+
+}
+
+.primary-button:hover{
+
+    transform:scale(1.08);
+
+}
+
+.secondary-button{
+
+    background:white;
+
+    color:#333;
+
+    position:relative;
+
+}
