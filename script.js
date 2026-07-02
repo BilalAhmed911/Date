@@ -29,6 +29,7 @@
   var sceneChapter3 = document.getElementById('scene-chapter3');
   var sceneChapter4 = document.getElementById("scene-chapter4");
   var sceneChapter5 = document.getElementById("scene-chapter5");
+  var sceneChapter6 = document.getElementById("scene-chapter6");
   var beginBtn = document.getElementById('beginBtn');
   var openQuestionBtn = document.getElementById('openQuestionBtn');
   var petalsContainer = document.getElementById('petals');
@@ -571,7 +572,61 @@ if(dayContinue){
 
     dayContinue.addEventListener("click",function(){
 
-        alert("Day Selected: "+selectedDay);
+        transitionScene(
+    sceneChapter5,
+    sceneChapter6
+);
+
+    });
+
+}
+
+/* =====================================================
+   CHAPTER 6
+===================================================== */
+
+var timeCards =
+document.querySelectorAll(".time-card");
+
+var timeContinue =
+document.getElementById("timeContinue");
+
+var selectedTime = "";
+
+if(timeCards.length){
+
+    timeCards.forEach(function(card){
+
+        card.addEventListener("click",function(){
+
+            timeCards.forEach(function(c){
+
+                c.classList.remove("selected");
+
+            });
+
+            card.classList.add("selected");
+
+            selectedTime =
+            card.dataset.time;
+
+            if(timeContinue){
+
+                timeContinue.style.display="inline-block";
+
+            }
+
+        });
+
+    });
+
+}
+
+if (timeContinue) {
+
+    timeContinue.addEventListener("click", function () {
+
+        alert("Chapter 7 Coming Next ❤️");
 
     });
 

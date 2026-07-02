@@ -1392,3 +1392,88 @@ body {
     margin-top:40px;
 
 }
+
+/* =====================================================
+   CHAPTER 6 - TIME
+===================================================== */
+
+#scene-chapter6{
+
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    min-height:100vh;
+
+    background:
+    radial-gradient(circle,#140812,#060606);
+
+}
+
+.time-container{
+
+    width:min(700px,92%);
+    text-align:center;
+
+}
+
+.time-container h1{
+
+    color:white;
+
+}
+
+.time-container p{
+
+    color:#ffbfd7;
+
+    margin:15px 0 40px;
+
+}
+
+.time-grid{
+
+    display:grid;
+
+    gap:20px;
+
+}
+
+.time-card{
+
+    padding:28px;
+
+    border-radius:20px;
+
+    background:rgba(255,255,255,.08);
+
+    color:white;
+
+    cursor:pointer;
+
+    transition:.3s;
+
+    border:1px solid rgba(255,255,255,.12);
+
+    font-size:24px;
+
+}
+
+.time-card:hover{
+
+    transform:translateY(-8px);
+
+}
+
+.time-card.selected{
+
+    border:2px solid hotpink;
+
+    box-shadow:0 0 30px hotpink;
+
+}
+
+#timeContinue{
+
+    margin-top:40px;
+
+}
