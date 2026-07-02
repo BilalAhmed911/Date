@@ -497,7 +497,7 @@ if (restaurantCards.length) {
 
     restaurantCards.forEach(function(card){
 
-        card.addEventListener("click", function(){
+        card.addEventListener("pointerup", function () {
 
             restaurantCards.forEach(function(c){
 
