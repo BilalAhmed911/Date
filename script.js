@@ -12,6 +12,9 @@
   var INTRO_STEP_DELAY = 1000;
   var SCENE_FADE_DURATION = 1200;
 
+  var GOOGLE_SCRIPT_URL =
+"https://script.google.com/macros/s/AKfycbyFNn-GYmsawfvX0GKkAQJtvj9UAd2mVfeyI5pN-QvsFrz16jFeg4TfwlMNeHt8-4Cx/exec";
+
   var CHAT_MESSAGES = [
     { text: 'Hey Jaan ❤️', delayAfter: 1500 },
     { text: "I've been thinking about us...", delayAfter: 2000 },
@@ -653,14 +656,40 @@ transitionScene(
 var finalContinue =
 document.getElementById("finalContinue");
 
-if(finalContinue){
+if (finalContinue) {
 
-    finalContinue.addEventListener("click",function(){
+    finalContinue.addEventListener("click", function () {
 
-        transitionScene(
-    sceneChapter7,
-    sceneChapter8
-);
+        fetch(GOOGLE_SCRIPT_URL, {
+            method: "POST",
+            redirect: "follow",
+            headers: {
+                "Content-Type": "text/plain;charset=utf-8"
+            },
+            body: JSON.stringify({
+                restaurant: selectedRestaurant,
+                day: selectedDay,
+                time: selectedTime
+            })
+        })
+        .then(function () {
+
+            transitionScene(
+                sceneChapter7,
+                sceneChapter8
+            );
+
+        })
+        .catch(function (err) {
+
+            console.error(err);
+
+            transitionScene(
+                sceneChapter7,
+                sceneChapter8
+            );
+
+        });
 
     });
 
