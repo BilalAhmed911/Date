@@ -481,7 +481,7 @@ if(yesButton){
     });
 
 }
-/* =====================================================
+//* =====================================================
    CHAPTER 4
 ===================================================== */
 
@@ -497,29 +497,21 @@ if (restaurantCards.length) {
 
     restaurantCards.forEach(function(card){
 
-        function selectRestaurant(card){
+        card.addEventListener("click", function(){
 
-    restaurantCards.forEach(function(c){
-        c.classList.remove("selected");
-    });
+            restaurantCards.forEach(function(c){
+                c.classList.remove("selected");
+            });
 
-    card.classList.add("selected");
+            card.classList.add("selected");
 
-    selectedRestaurant = card.dataset.value;
+            selectedRestaurant = card.dataset.value;
 
-    if(restaurantContinue){
-        restaurantContinue.style.display = "inline-block";
-    }
-}
+            if (restaurantContinue) {
+                restaurantContinue.style.display = "inline-block";
+            }
 
-card.addEventListener("click", function(){
-    selectRestaurant(card);
-});
-
-card.addEventListener("touchstart", function(e){
-    e.preventDefault();
-    selectRestaurant(card);
-});
+        });
 
     });
 
@@ -527,12 +519,12 @@ card.addEventListener("touchstart", function(e){
 
 if (restaurantContinue) {
 
-    restaurantContinue.addEventListener("click", function () {
+    restaurantContinue.addEventListener("click", function(){
 
         transitionScene(
-    sceneChapter4,
-    sceneChapter5
-);
+            sceneChapter4,
+            sceneChapter5
+        );
 
     });
 
