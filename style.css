@@ -1205,11 +1205,15 @@ body {
     radial-gradient(circle at top,#2b0b1c,#090909 60%);
 }
 
-.restaurant-container{
+   .restaurant-container{
 
-    width:min(900px,92%);
-
-    text-align:center;
+    width:100%;
+    height:100%;
+    overflow-y:auto;
+    padding:20px;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
 
 }
 
@@ -1247,6 +1251,8 @@ body {
     repeat(auto-fit,minmax(220px,1fr));
 
     gap:22px;
+
+    margin-bottom:30px;
 
 }
 

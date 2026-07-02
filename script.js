@@ -505,9 +505,14 @@ if (restaurantCards.length) {
 
             selectedRestaurant = card.dataset.value;
 
-            if (restaurantContinue) {
-                restaurantContinue.style.display = "inline-block";
-            }
+            setTimeout(function(){
+
+                transitionScene(
+                    sceneChapter4,
+                    sceneChapter5
+                );
+
+            }, 500);
 
         });
 
