@@ -8,17 +8,54 @@
 </head>
 <body>
 
-    <div class="fullscreen-container">
-        <main class="hero">
-            <div class="heart-placeholder" aria-hidden="true">❤</div>
+    <div id="app">
 
-            <h2 class="hero-heading">Made with ❤️ by Bilal</h2>
-            <p class="hero-subheading">For one very special person...</p>
+        <!-- Chapter 1: Cinematic Intro -->
+        <section id="scene-intro" class="scene scene--active" aria-label="Introduction">
 
-            <h1 class="hero-title">Arisha</h1>
+            <!-- Parallax background layers -->
+            <div class="parallax-bg" aria-hidden="true">
+                <div class="parallax-bg__layer parallax-bg__layer--1" data-depth="0.03"></div>
+                <div class="parallax-bg__layer parallax-bg__layer--2" data-depth="0.06"></div>
+                <div class="parallax-bg__layer parallax-bg__layer--3" data-depth="0.09"></div>
+            </div>
 
-            <button type="button" id="beginBtn">Begin</button>
-        </main>
+            <!-- Ambient particles (populated by JS) -->
+            <div class="particles" id="particles" aria-hidden="true"></div>
+
+            <!-- Floating rose petals (populated by JS) -->
+            <div class="petals" id="petals" aria-hidden="true"></div>
+
+            <div class="fullscreen-container">
+                <div class="card-glow" aria-hidden="true"></div>
+
+                <main class="hero">
+                    <div class="heart-placeholder" aria-hidden="true">❤</div>
+
+                    <h2 class="hero-heading intro-step" data-step="heading">
+                        Made with ❤️ by Bilal
+                    </h2>
+
+                    <p class="hero-subheading intro-step" data-step="subheading">
+                        For one very special person...
+                    </p>
+
+                    <h1 class="hero-title intro-step" data-step="title">
+                        <span class="hero-title__text">ARISHA</span>
+                        <span class="hero-title__shimmer" aria-hidden="true"></span>
+                    </h1>
+
+                    <button type="button" id="beginBtn" class="intro-step" data-step="button">
+                        Begin
+                    </button>
+                </main>
+            </div>
+        </section>
+
+        <!-- Chapter 2: Placeholder (not built yet) -->
+        <section id="scene-chapter2" class="scene scene--hidden" aria-hidden="true" aria-label="Chapter 2">
+        </section>
+
     </div>
 
     <script src="script.js"></script>
